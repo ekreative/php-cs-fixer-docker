@@ -1,4 +1,4 @@
-FROM php:5-cli
+FROM php:7-cli
 
 MAINTAINER Fred Cox "mcfedr@gmail.com"
 
@@ -12,20 +12,19 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install mcrypt intl mbstring pdo_mysql pcntl xsl zip
 
-#ENV PHP_REDIS_VERSION 2.2.7
-#RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/${PHP_REDIS_VERSION}.tar.gz \
-#    && tar xfz /tmp/redis.tar.gz \
-#    && rm -r /tmp/redis.tar.gz \
-#    && mv phpredis-${PHP_REDIS_VERSION} /usr/src/php/ext/redis \
-#    && docker-php-ext-install redis
+ENV PHP_REDIS_VERSION php7
+RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/${PHP_REDIS_VERSION}.tar.gz \
+    && tar xfz /tmp/redis.tar.gz \
+    && rm -r /tmp/redis.tar.gz \
+    && mv phpredis-${PHP_REDIS_VERSION} /usr/src/php/ext/redis \
+    && docker-php-ext-install redis
 
-RUN pecl install -o -f redis xdebug apcu-4.0.10 \
-    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-    && echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
-
-#RUN echo "y\ny" | pecl install apcu-beta \
-#    && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
+RUN touch /usr/local/etc/php/conf.d/pecl.ini \
+    && pear config-set php_ini /usr/local/etc/php/conf.d/pecl.ini \
+    && pecl config-set php_ini /usr/local/etc/php/conf.d/pecl.ini \
+    && pecl install -o -f xdebug-2.4.0RC3 apcu \
+    && rm -rf /tmp/pear \
+    && sed -i.bak '/^extension="xdebug.so"$/d' /usr/local/etc/php/conf.d/pecl.ini
 
 RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
 
