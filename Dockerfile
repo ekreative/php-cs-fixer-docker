@@ -22,9 +22,12 @@ RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/${
 RUN touch /usr/local/etc/php/conf.d/pecl.ini \
     && pear config-set php_ini /usr/local/etc/php/conf.d/pecl.ini \
     && pecl config-set php_ini /usr/local/etc/php/conf.d/pecl.ini \
-    && pecl install -o -f xdebug-2.4.0RC3 apcu \
+    && pecl config-set preferred_state beta \
+    && pecl install -o -f xdebug apcu_bc \
     && rm -rf /tmp/pear \
-    && sed -i.bak '/^extension="xdebug.so"$/d' /usr/local/etc/php/conf.d/pecl.ini
+    && sed -i.bak '/^extension="xdebug.so"$/d' /usr/local/etc/php/conf.d/pecl.ini \
+    && sed -i.bak '/extension="apcu\{0,1\}\.so"/d' /usr/local/etc/php/conf.d/pecl.ini \
+    && printf "extension=\"apcu.so\"\nextension=\"apc.so\"" >> /usr/local/etc/php/conf.d/pecl.ini
 
 RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
 
