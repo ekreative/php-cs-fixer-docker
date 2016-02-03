@@ -30,6 +30,7 @@ RUN touch /usr/local/etc/php/conf.d/pecl.ini \
     && printf "extension=\"apcu.so\"\nextension=\"apc.so\"" >> /usr/local/etc/php/conf.d/pecl.ini
 
 RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
+RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory.ini
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
