@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
         curl \
         git \
-   && apt-get autoremove -y
+   && apt-get autoremove -y \
    && apt-get clean all
 
 RUN docker-php-ext-install mcrypt intl mbstring pdo_mysql pcntl xsl zip
