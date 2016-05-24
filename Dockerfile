@@ -39,7 +39,7 @@ RUN pecl install -o -f xdebug \
     && rm -rf /tmp/pear
 RUN docker-php-ext-enable xdebug
 
-RUN pecl config-set preferred_state beta
+RUN pecl config-set preferred_state beta \
     && pecl install -o -f apcu_bc \
     && rm -rf /tmp/pear
 RUN docker-php-ext-enable --ini-name 0-apc.ini apcu apc
