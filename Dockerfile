@@ -42,7 +42,7 @@ RUN curl -L -o /tmp/memcached.tar.gz https://github.com/php-memcached-dev/php-me
 
 RUN pecl install -o -f xdebug \
     && rm -rf /tmp/pear
-RUN docker-php-ext-enable xdebug
+# RUN docker-php-ext-enable xdebug
 
 RUN pecl config-set preferred_state beta \
     && pecl install -o -f apcu_bc \
