@@ -21,20 +21,9 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install zip
 
-ENV PHP_REDIS_VERSION php7
-RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/${PHP_REDIS_VERSION}.tar.gz \
-    && mkdir -p redis \
-    && tar xfz /tmp/redis.tar.gz -C redis --strip-components=1 \
-    && rm -r /tmp/redis.tar.gz \
-    && ( \
-      cd redis \
-      && phpize \
-      && ./configure --enable-redis \
-      && make -j$(nproc) \
-      && make install \
-    ) \
-    && rm -r redis \
-    && docker-php-ext-enable redis
+RUN pecl install -o -f redis \
+    && rm -rf /tmp/pear
+RUN docker-php-ext-enable redis
 
 ENV PHP_MEMCACHED_VERSION php7
 RUN curl -L -o /tmp/memcached.tar.gz https://github.com/php-memcached-dev/php-memcached/archive/${PHP_MEMCACHED_VERSION}.tar.gz \
