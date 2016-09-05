@@ -23,17 +23,33 @@ RUN docker-php-ext-install zip
 
 ENV PHP_REDIS_VERSION php7
 RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/${PHP_REDIS_VERSION}.tar.gz \
-    && tar xfz /tmp/redis.tar.gz \
+    && mkdir -p redis \
+    && tar xfz /tmp/redis.tar.gz -C redis --strip-components=1 \
     && rm -r /tmp/redis.tar.gz \
-    && mv phpredis-${PHP_REDIS_VERSION} /usr/src/php/ext/redis
-RUN docker-php-ext-install redis
+    && ( \
+      cd redis \
+      && phpize \
+      && ./configure --enable-redis \
+      && make -j$(nproc) \
+      && make install \
+    ) \
+    && rm -r redis \
+    && docker-php-ext-enable redis
 
 ENV PHP_MEMCACHED_VERSION php7
 RUN curl -L -o /tmp/memcached.tar.gz https://github.com/php-memcached-dev/php-memcached/archive/${PHP_MEMCACHED_VERSION}.tar.gz \
-    && tar xfz /tmp/memcached.tar.gz \
+    && mkdir -p memcached \
+    && tar xfz /tmp/memcached.tar.gz -C memcached --strip-components=1 \
     && rm -r /tmp/memcached.tar.gz \
-    && mv php-memcached-${PHP_MEMCACHED_VERSION} /usr/src/php/ext/memcached
-RUN docker-php-ext-install memcached
+    && ( \
+      cd memcached \
+      && phpize \
+      && ./configure --enable-memcached \
+      && make -j$(nproc) \
+      && make install \
+    ) \
+    && rm -r memcached \
+    && docker-php-ext-enable memcached
 
 RUN pecl install -o -f xdebug \
     && rm -rf /tmp/pear
