@@ -1,11 +1,11 @@
-# Php docker image
+# Php-cs-fixer docker image
 
-Image used for running php tests on our ci server
+Image used for running cs fixer on our ci server
 
 ## Build command
 
-    docker build -t ekreative/php .
+    docker build -t ekreative/php-cs-fixer .
 
 ## Build an app
 
-    docker run -ti --rm --volume=$(pwd):/opt/workspace ekreative/php ./bin/phpunit
+    docker run -ti --rm --volume=$(pwd):/srv -w /srv ekreative/php-cs-fixer
