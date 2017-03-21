@@ -1,4 +1,4 @@
-FROM php:7-cli
+FROM php:7-alpine
 
 MAINTAINER Fred Cox "mcfedr@gmail.com"
 
