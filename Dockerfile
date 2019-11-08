@@ -3,7 +3,7 @@ FROM php:7-alpine
 MAINTAINER Fred Cox "mcfedr@gmail.com"
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
-RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.60.0/php-cs-fixer.phar -o php-cs-fixer \
+RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.0/php-cs-fixer.phar -o php-cs-fixer \
     && chmod +x php-cs-fixer \
     && mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
