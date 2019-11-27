@@ -14,7 +14,16 @@ for variant in "${!variants[@]}"; do
   dir="$variant"
   rm -rf "$dir"
   mkdir -p "$dir"
+
+  extraSed=''
+  if [ "$variant" = "1" ]; then
+    extraSed='
+      '"$extraSed"'
+      /##<verify>##/,/##<\/verify>##/d;
+    '
+  fi
   sed -E '
+    '"$extraSed"'
     s/%%VARIANT%%/'"${variants[$variant]}"'/;
   ' $template > "$dir/Dockerfile"
 done
