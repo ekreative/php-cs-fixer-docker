@@ -2,6 +2,12 @@
 
 Image used for running cs fixer on our ci server
 
+## Tags available
+
+* `2.16`, `2`, `latest`
+* `2.15`
+* `1`
+
 ## Build command
 
     docker build -t ekreative/php-cs-fixer .
