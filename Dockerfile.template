@@ -1,15 +1,18 @@
 FROM php:7-alpine
 
-MAINTAINER Fred Cox "mcfedr@gmail.com"
+RUN apk add --no-cache oniguruma \
+    && apk add --no-cache --virtual .build-deps oniguruma-dev \
+    && docker-php-ext-install mbstring \
+    && apk del .build-deps
 
 ENV PHP_CS_FIXER_VERISON %%VARIANT%%
 RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERISON/php-cs-fixer.phar -o php-cs-fixer \
 ##<verify>##
     && curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERISON/php-cs-fixer.phar.asc -o php-cs-fixer.phar.asc \
-    && apk add --virtual .deps gnupg \
+    && apk add --no-cache --virtual .build-deps gnupg \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-key BBAB5DF0A0D6672989CF1869E82B2FB314E9906E \
     && gpg --verify php-cs-fixer.phar.asc php-cs-fixer \
-    && apk del .deps \
+    && apk del .build-deps \
 ##</verify>##
     && chmod +x php-cs-fixer \
     && mv php-cs-fixer /usr/local/bin/php-cs-fixer
