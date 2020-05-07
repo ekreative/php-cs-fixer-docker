@@ -1,6 +1,6 @@
 FROM php:7-alpine
 
-ENV PHP_CS_FIXER_VERISON 2.16.1
+ENV PHP_CS_FIXER_VERISON 2.16.3
 RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERISON/php-cs-fixer.phar -o php-cs-fixer \
 ##<verify>##
     && curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERISON/php-cs-fixer.phar.asc -o php-cs-fixer.phar.asc \
