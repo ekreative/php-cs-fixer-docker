@@ -25,5 +25,5 @@ for variant in "${!variants[@]}"; do
   sed -E '
     '"$extraSed"'
     s/%%VARIANT%%/'"${variants[$variant]}"'/;
-  ' $template > "$dir/Dockerfile"
+  ' $template >"$dir/Dockerfile"
 done
