@@ -3,9 +3,9 @@ set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
 declare -A variants=(
-  ['2']='2.16.3'
-  ['2.16']='2.16.3'
-  ['2.15']='2.15.7'
+  ['2']='2.16.4'
+  ['2.16']='2.16.4'
+  ['2.15']='2.15.8'
   ['1']='1.13.2'
 )
 
