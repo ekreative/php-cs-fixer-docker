@@ -3,10 +3,19 @@ set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
 declare -A variants=(
-  ['2']='2.16.5'
-  ['2.16']='2.16.5'
-  ['2.15']='2.15.9'
-  ['1']='1.13.2'
+  ['2']='2.17.3'
+  ['2.17']='2.17.3'
+  ['2.16']='2.16.10'
+  ['2.15']='2.15.10'
+  ['1']='1.13.3'
+)
+
+declare -A php_version=(
+  ['2']='7'
+  ['2.17']='7'
+  ['2.16']='7'
+  ['2.15']='7'
+  ['1']='7.1'
 )
 
 for variant in "${!variants[@]}"; do
@@ -25,5 +34,6 @@ for variant in "${!variants[@]}"; do
   sed -E '
     '"$extraSed"'
     s/%%VARIANT%%/'"${variants[$variant]}"'/;
+    s/%%PHP_VERSION%%/'"${php_version[$variant]}"'/;
   ' $template >"$dir/Dockerfile"
 done

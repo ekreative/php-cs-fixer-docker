@@ -1,13 +1,14 @@
 language: shell
-dist: bionic
+dist: focal
 
 env:
-  - SHFMT_URL=https://github.com/mvdan/sh/releases/download/v3.1.1/shfmt_v3.1.1_linux_amd64
+  HADOLINT: "${HOME}/hadolint"
 
 install:
-  - curl -sSL $SHFMT_URL -o ~/shfmt && chmod +x ~/shfmt
+  - curl -sL -o "$HADOLINT" "https://github.com/hadolint/hadolint/releases/download/v1.17.6/hadolint-$(uname -s)-$(uname -m)" && chmod +x "$HADOLINT"
 
 script:
-  - ~/shfmt -d -i 2 update.sh
   - shellcheck update.sh
+  - shfmt -d -i 2 update.sh
+  - $HADOLINT */Dockerfile
   - ./update.sh && git diff --exit-code
