@@ -1,6 +1,6 @@
-FROM php:7-alpine
+FROM php:8-alpine
 
-ENV PHP_CS_FIXER_VERISON 2.17.5
+ENV PHP_CS_FIXER_VERISON 2.18.0
 # hadolint ignore=DL3018
 RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERISON/php-cs-fixer.phar -o php-cs-fixer \
 ##<verify>##
