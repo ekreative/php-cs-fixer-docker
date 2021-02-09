@@ -3,8 +3,8 @@ set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
 declare -A variants=(
-  ['2']='2.18.1'
-  ['2.18']='2.18.0'
+  ['2']='2.18.2'
+  ['2.18']='2.18.2'
   ['2.17']='2.17.5'
   ['2.16']='2.16.10'
   ['2.15']='2.15.10'
