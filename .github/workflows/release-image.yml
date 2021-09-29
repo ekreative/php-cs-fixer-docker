@@ -87,7 +87,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ekreative/android
+          images: ekreative/php-cs-fixer
           tags: |
             type=raw,value=${{ matrix.version }}
           flavor: |
