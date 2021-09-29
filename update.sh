@@ -35,12 +35,12 @@ for variant in "${!variants[@]}"; do
   mkdir -p "$dir"
 
   extraSed=''
-  if [ "$variant" = "1" ]; then
-    extraSed='
+  #  if [ "$variant" = "1" ]; then
+  extraSed='
       '"$extraSed"'
       /##<verify>##/,/##<\/verify>##/d;
     '
-  fi
+  #  fi
   sed -E '
     '"$extraSed"'
     s/%%VARIANT%%/'"${variants[$variant]}"'/;
