@@ -4,14 +4,17 @@ Image used for running cs fixer on our ci server
 
 ## Tags available
 
-* `3.2`, `3` `latest`
+* `3.8`, `3` `latest`
+* `3.8`
+* `3.7`
+* `3.6`
+* `3.5`
+* `3.4`
+* `3.3`
+* `3.2`
 * `3.1`
 * `3.0`
 * `2.19`, `2`
-* `2.18`
-* `2.17`
-* `2.16`
-* `2.15`
 * `1`
 
 ## Build command
