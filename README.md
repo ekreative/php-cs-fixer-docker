@@ -4,7 +4,7 @@ Image used for running cs fixer on our ci server
 
 ## Tags available
 
-* `3.8`, `3` `latest`
+* `3.12`, `3` `latest`
 * `3.8`
 * `3.7`
 * `3.6`

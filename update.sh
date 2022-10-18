@@ -3,7 +3,8 @@ set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
 declare -A variants=(
-  ['3']='3.8.0'
+  ['3']='3.12.0'
+  ['3.12']='3.12.0'
   ['3.8']='3.8.0'
   ['3.7']='3.7.0'
   ['3.6']='3.6.0'
@@ -20,6 +21,7 @@ declare -A variants=(
 
 declare -A php_version=(
   ['3']='8'
+  ['3.12']='8.1'
   ['3.8']='8.1'
   ['3.7']='8.1'
   ['3.6']='8.1'
