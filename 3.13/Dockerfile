@@ -1,4 +1,4 @@
-FROM php:8.2-alpine
+FROM php:8.1-alpine
 
 ENV PHP_CS_FIXER_VERSION 3.13.2
 # hadolint ignore=DL3018
