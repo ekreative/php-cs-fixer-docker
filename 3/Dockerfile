@@ -1,6 +1,6 @@
-FROM php:8.0-alpine
+FROM php:8.3-alpine
 
-ENV PHP_CS_FIXER_VERSION 3.13.2
+ENV PHP_CS_FIXER_VERSION 3.57.2
 # hadolint ignore=DL3018
 RUN curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v$PHP_CS_FIXER_VERSION/php-cs-fixer.phar -o php-cs-fixer \
     && chmod +x php-cs-fixer \
