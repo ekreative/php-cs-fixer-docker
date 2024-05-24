@@ -5,7 +5,7 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: ['*']
+    branches: ["*"]
   pull_request:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check update has been run
         run: |
@@ -29,7 +29,7 @@ jobs:
     container: hadolint/hadolint:latest-debian
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check hadolint
         run: |
@@ -42,7 +42,7 @@ jobs:
     container: mvdan/shfmt:latest-alpine
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check shfmt
         run: |
@@ -55,7 +55,7 @@ jobs:
     container: koalaman/shellcheck-alpine:latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check shellcheck
         run: |
@@ -68,12 +68,11 @@ jobs:
       packages: write
     strategy:
       matrix:
-        # Update only v3 images without touching older ones to better manage back-compatibility
-        version: ['3.12', '3.13', '3.57', '3']
+        version: ["3.57", "3"]
     needs: [checks-hadolint, checks-shfmt, checks-shellcheck, checks-update]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
