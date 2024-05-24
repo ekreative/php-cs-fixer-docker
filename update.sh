@@ -3,23 +3,25 @@ set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
 declare -A variants=(
-  ['3.17']='3.17.0'
-  ['3']='3.13.2'
+  ['3']='3.57.2'
+  ['3.57']='3.57.2'
   ['3.13']='3.13.2'
   ['3.12']='3.12.0'
-  ['2']='2.19.3'
-  ['2.19']='2.19.3'
-  ['1']='1.13.3'
+  # Don't rebuild old images
+  # ['2']='2.19.3'
+  # ['2.19']='2.19.3'
+  # ['1']='1.13.3'
 )
 
 declare -A php_version=(
-  ['3.17']='8.2'
-  ['3']='8.0'
+  ['3']='8.3'
+  ['3.57']='8.3'
   ['3.13']='8.1'
   ['3.12']='8.1'
-  ['2']='8.0'
-  ['2.19']='8.0'
-  ['1']='7.1'
+  # Don't rebuild old images
+  # ['2']='8.0'
+  # ['2.19']='8.0'
+  # ['1']='7.1'
 )
 
 for variant in "${!variants[@]}"; do
@@ -39,5 +41,5 @@ for variant in "${!variants[@]}"; do
     '"$extraSed"'
     s/%%VARIANT%%/'"${variants[$variant]}"'/;
     s/%%PHP_VERSION%%/'"${php_version[$variant]}"'/;
-  ' $template >"$dir/Dockerfile"
+  ' "$template" >"$dir/Dockerfile"
 done
