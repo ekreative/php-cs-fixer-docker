@@ -4,10 +4,11 @@ Image used for running cs fixer on our ci server
 
 ## Tags available
 
-- `3.57`, `3` `latest`
+- `3.89`, `3`, `latest` (PHP-CS-Fixer 3.89.0 on PHP 8.4)
 
 ## Unmaintained tags
 
+- `3.57` (PHP-CS-Fixer 3.57.2 on PHP 8.3)
 - `3.13`
 - `3.12`
 - `3.9`

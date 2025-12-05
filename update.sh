@@ -2,14 +2,15 @@
 set -e
 
 # https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases
+
 declare -A variants=(
-  ['3']='3.57.2'
-  ['3.57']='3.57.2'
+  ['3']='3.89.0'
+  ['3.89']='3.89.0'
 )
 
 declare -A php_version=(
-  ['3']='8.3'
-  ['3.57']='8.3'
+  ['3']='8.4'
+  ['3.89']='8.4'
 )
 
 for variant in "${!variants[@]}"; do
